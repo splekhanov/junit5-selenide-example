@@ -10,22 +10,22 @@ import static com.codeborne.selenide.Selenide.$x;
 
 public class SearchResultsPage extends AbstractBasePage {
 
-    private static SelenideElement searchResultsContainer = $x("//ytd-search/div[@id='container']");
-    private static ElementsCollection resultsElements = $$x("//ytd-video-renderer[div[@id='dismissable']]");
-    private static SelenideElement noResultsFoundTitle = $x("//div[contains(@class,'promo-title')]");
+    private static final SelenideElement SEARCH_RESULTS_CONTAINER = $x("//ytd-search/div[@id='container']");
+    private static final ElementsCollection RESULTS_ELEMENTS = $$x("//ytd-video-renderer[div[@id='dismissable']]");
+    private static final SelenideElement NO_RESULTS_FOUND_TITLE = $x("//div[contains(@class,'promo-title')]");
 
     @Override
     @Step("check Search Results Page is loaded")
     protected void assertLoaded() {
-        searchResultsContainer.waitUntil(visible, 4000);
-        assertDisplayed(searchResultsContainer);
+        SEARCH_RESULTS_CONTAINER.waitUntil(visible, 4000);
+        assertDisplayed(SEARCH_RESULTS_CONTAINER);
     }
 
     public ElementsCollection getSearchResults() {
-        return resultsElements.filterBy(visible);
+        return RESULTS_ELEMENTS.filterBy(visible);
     }
 
     public boolean areAnyResultsFound() {
-        return noResultsFoundTitle.isDisplayed();
+        return NO_RESULTS_FOUND_TITLE.isDisplayed();
     }
 }

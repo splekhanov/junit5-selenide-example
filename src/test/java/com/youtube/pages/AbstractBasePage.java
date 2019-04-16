@@ -21,7 +21,7 @@ import static com.youtube.lib.Timeout.short_wait;
 
 public abstract class AbstractBasePage {
 
-    private static SelenideElement redNavigationProgressBar = $x("//yt-page-navigation-progress");
+    private static final SelenideElement RED_NAVIGATION_PROGRESS_BAR = $x("//yt-page-navigation-progress");
 
     AbstractBasePage() {
         waitForPageToLoad();

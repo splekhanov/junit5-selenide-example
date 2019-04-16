@@ -8,38 +8,38 @@ import static com.codeborne.selenide.Selenide.$x;
 
 public class MastheadWidgetPage extends AbstractBasePage {
 
-    private static SelenideElement searchField = $x("//input[@id='search']");
-    private static SelenideElement submitSearchButton = $x("//button[@id='search-icon-legacy']");
-    private static SelenideElement loginButton = $x("//*[@id='masthead']//a[contains(@href,'ServiceLogin')]");
-    private static SelenideElement avatarButton = $x("//button[@id='avatar-btn']");
-    private static SelenideElement userMenuContainer = $x("//iron-dropdown//div[@id='container']");
-    private static SelenideElement logoutLink = $x("//a[contains(@href,'logout')]");
+    private static final SelenideElement SEARCH_FIELD = $x("//input[@id='search']");
+    private static final SelenideElement SUBMIT_SEARCH_BUTTON = $x("//button[@id='search-icon-legacy']");
+    private static final SelenideElement LOGIN_BUTTON = $x("//*[@id='masthead']//a[contains(@href,'ServiceLogin')]");
+    private static final SelenideElement AVATAR_BUTTON = $x("//button[@id='avatar-btn']");
+    private static final SelenideElement USER_MENU_CONTAINER = $x("//iron-dropdown//div[@id='container']");
+    private static final SelenideElement LOGOUT_LINK = $x("//a[contains(@href,'logout')]");
 
     @Override
     @Step("check Masthead Widget is loaded")
     protected void assertLoaded() {
-        assertDisplayed(searchField, submitSearchButton);
+        assertDisplayed(SEARCH_FIELD, SUBMIT_SEARCH_BUTTON);
     }
 
     @Step("Searching for {searchRequest}")
     public SearchResultsPage searchFor(String searchRequest){
-        searchField.setValue(searchRequest);
-        submitSearchButton.click();
+        SEARCH_FIELD.setValue(searchRequest);
+        SUBMIT_SEARCH_BUTTON.click();
         return new SearchResultsPage();
     }
 
     @Step
     public GoogleLoginPage clickLoginButton(){
-        loginButton.click();
+        LOGIN_BUTTON.click();
         GoogleLoginPage gPage = new GoogleLoginPage();
         return gPage;
     }
 
     public void logout() {
-        avatarButton.click();
-        userMenuContainer.waitUntil(visible,1000);
-        logoutLink.click();
+        AVATAR_BUTTON.click();
+        USER_MENU_CONTAINER.waitUntil(visible,1000);
+        LOGOUT_LINK.click();
         new YoutubeMainPage();
-        loginButton.waitUntil(visible, 4000);
+        LOGIN_BUTTON.waitUntil(visible, 4000);
     }
 }

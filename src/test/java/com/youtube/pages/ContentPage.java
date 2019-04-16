@@ -7,11 +7,11 @@ import static com.codeborne.selenide.Selenide.$x;
 
 public class ContentPage extends AbstractBasePage {
 
-    private static SelenideElement contentPageManager = $x("//*[@id='page-manager']");
+    private static final SelenideElement CONTENT_PAGE_MANAGER = $x("//*[@id='page-manager']");
 
     @Override
     @Step("check Content Page is loaded")
     protected void assertLoaded() {
-        assertDisplayed(contentPageManager);
+        assertDisplayed(CONTENT_PAGE_MANAGER);
     }
 }

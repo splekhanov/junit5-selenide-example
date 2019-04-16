@@ -16,14 +16,14 @@ public class YoutubeMainPage extends AbstractBasePage {
         contentPage = new ContentPage();
     }
 
-    private static SelenideElement mastheadWidget = $x("//*[@id='masthead']");
-    private static SelenideElement guideWidget = $x("//*[@id='guide-renderer']");
+    private static final SelenideElement MASTHEAD_WIDGET = $x("//*[@id='masthead']");
+    private static final SelenideElement GUIDE_WIDGET = $x("//*[@id='guide-renderer']");
 
     @Override
     @Step("check Youtube Main Page is loaded")
     protected void assertLoaded() {
-        mastheadWidget.waitUntil(visible, 4000);
-        assertDisplayed(guideWidget);
+        MASTHEAD_WIDGET.waitUntil(visible, 4000);
+        assertDisplayed(GUIDE_WIDGET);
     }
 
     public MastheadWidgetPage getMastheadWidgetPage() {

@@ -21,6 +21,7 @@ import java.util.List;
 import java.util.Objects;
 import java.util.Properties;
 
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 
 import static com.codeborne.selenide.Selenide.open;
@@ -29,7 +30,7 @@ import static com.google.common.collect.MoreCollectors.onlyElement;
 
 public class BaseTestClass {
 
-    public static User user1;
+    protected static User user1;
     private static List<User> users;
     private static String startUrl;
     private static Properties properties;
@@ -44,8 +45,8 @@ public class BaseTestClass {
         youtubeMainPage = new YoutubeMainPage();
     }
 
-    @AfterAll
-    public static void tearDown() {
+    @AfterEach
+    public void tearDown() {
         SelenideLogger.removeListener("Allure Selenide");
     }
 
