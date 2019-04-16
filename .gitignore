@@ -1,0 +1,19 @@
+# Maven
+target/
+
+# Allure
+allure-results/
+
+# IntelliJ
+.idea
+*.iml
+*.ipr
+*.iws
+
+# Misc
+*.log
+test logs/
+screenshots/
+build/
+.settings/
+messages*
