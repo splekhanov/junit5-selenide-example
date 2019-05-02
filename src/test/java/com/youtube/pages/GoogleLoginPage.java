@@ -7,28 +7,27 @@ import static com.codeborne.selenide.Selenide.$x;
 
 public class GoogleLoginPage extends AbstractBasePage {
 
-    private static final SelenideElement LOGIN_FORM_CONTAINER = $x("//div[@id='initialView']");
-    private static final SelenideElement LOGO = $x("//div[@id='logo']");
-    private static final SelenideElement PROFILE = $x("//div[@id='profileIdentifier']");
-    private static final SelenideElement EMAIL_INPUT = $x("//input[@type='email']");
-    private static final SelenideElement PASSWORD_INPUT = $x("//input[@name='password']");
-    private static final SelenideElement LOGIN_NEXT_BUTTON = $x("//div[@id='identifierNext']");
-    private static final SelenideElement PASSWORD_NEXT_BUTTON = $x("//div[@id='passwordNext']");
+    private SelenideElement loginFormContainer = $x("//div[@id='initialView']");
+    private SelenideElement logo = $x("//div[@id='logo']");
+    private SelenideElement profile = $x("//div[@id='profileIdentifier']");
+    private SelenideElement emailInput = $x("//input[@type='email']");
+    private SelenideElement passwordInput = $x("//input[@name='password']");
+    private SelenideElement loginNextButton = $x("//div[@id='identifierNext']");
+    private SelenideElement passwordNextButton = $x("//div[@id='passwordNext']");
 
-    @Override
-    protected void assertLoaded() {
-        LOGIN_FORM_CONTAINER.waitUntil(visible, 4000);
-        assertDisplayed(LOGO);
+    GoogleLoginPage() {
+        loginFormContainer.waitUntil(visible, 4000);
+        checkPageLoaded(logo);
     }
 
     public void login(String login, String password) {
-        if (!PROFILE.isDisplayed()) {
-            EMAIL_INPUT.setValue(login);
-            LOGIN_NEXT_BUTTON.click();
-            PASSWORD_INPUT.waitUntil(visible, 2000);
+        if (!profile.isDisplayed()) {
+            emailInput.setValue(login);
+            loginNextButton.click();
+            passwordInput.waitUntil(visible, 2000);
         }
-        PASSWORD_INPUT.setValue(password);
-        PASSWORD_NEXT_BUTTON.click();
+        passwordInput.setValue(password);
+        passwordNextButton.click();
         new YoutubeMainPage();
     }
 }
