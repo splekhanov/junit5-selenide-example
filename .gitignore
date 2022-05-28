@@ -2,7 +2,10 @@
 target/
 
 # Allure
+.allure/
 allure-results/
+allure-reports/
+reports/
 
 # IntelliJ
 .idea

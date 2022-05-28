@@ -10,11 +10,13 @@ import static com.codeborne.selenide.Selenide.$x;
 public class SearchResultsPage extends AbstractBasePage {
 
     private SelenideElement searchResultsContainer = $x("//ytd-search/div[@id='container']");
-    private ElementsCollection resultsElements = $$x("//ytd-video-renderer[div[@id='dismissable']]");
+    private ElementsCollection resultsElements = $$x("//h3[contains(@class, 'title-and-badge')]/*[@aria-label]");
     private SelenideElement noResultsFoundTitle = $x("//div[contains(@class,'promo-title')]");
 
+
+
     SearchResultsPage() {
-        searchResultsContainer.waitUntil(visible, 4000);
+        searchResultsContainer.shouldBe(visible);
         checkPageLoaded(searchResultsContainer);
     }
 

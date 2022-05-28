@@ -35,9 +35,9 @@ public class MastheadWidgetPage extends AbstractBasePage {
 
     public void logout() {
         avatarButton.click();
-        userMenuContainer.waitUntil(visible,1000);
+        userMenuContainer.shouldBe(visible);
         logoutLink.click();
         new YoutubeMainPage();
-        loginButton.waitUntil(visible, 4000);
+        loginButton.shouldBe(visible);
     }
 }

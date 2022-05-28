@@ -14,7 +14,7 @@ public class YoutubeMainPage extends AbstractBasePage {
     private SelenideElement guideWidget = $x("//*[@id='guide-renderer']");
 
     public YoutubeMainPage() {
-        mastheadWidget.waitUntil(visible, 4000);
+        mastheadWidget.shouldBe(visible);
         checkPageLoaded(guideWidget);
 
         mastheadWidgetPage = new MastheadWidgetPage();

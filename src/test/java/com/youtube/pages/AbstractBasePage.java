@@ -54,14 +54,8 @@ public abstract class AbstractBasePage {
         return pcName + "\n" + thr.getMessage();
     }
 
-    private <T> void waitFor(ExpectedCondition<T> condition, long timeOutInSeconds) {
-        new WebDriverWait(getWebDriver(), timeOutInSeconds)
-                .ignoring(NotFoundException.class, NoSuchWindowException.class)
-                .until(condition);
-    }
-
     protected boolean isVisible(SelenideElement elem) {
-        if (elem.waitUntil(visible, 4000).isDisplayed()) {
+        if (elem.shouldBe(visible).isDisplayed()) {
             return true;
         } else {
             return false;

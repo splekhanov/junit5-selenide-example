@@ -16,7 +16,7 @@ public class GoogleLoginPage extends AbstractBasePage {
     private SelenideElement passwordNextButton = $x("//div[@id='passwordNext']");
 
     GoogleLoginPage() {
-        loginFormContainer.waitUntil(visible, 4000);
+        loginFormContainer.shouldBe(visible);
         checkPageLoaded(logo);
     }
 
@@ -24,7 +24,7 @@ public class GoogleLoginPage extends AbstractBasePage {
         if (!profile.isDisplayed()) {
             emailInput.setValue(login);
             loginNextButton.click();
-            passwordInput.waitUntil(visible, 2000);
+            passwordInput.shouldBe(visible);
         }
         passwordInput.setValue(password);
         passwordNextButton.click();

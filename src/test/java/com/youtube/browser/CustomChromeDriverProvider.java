@@ -1,28 +1,40 @@
 package com.youtube.browser;
 
+import com.codeborne.selenide.Browser;
+import com.codeborne.selenide.Config;
 import com.codeborne.selenide.WebDriverProvider;
 import io.github.bonigarcia.wdm.WebDriverManager;
+import org.openqa.selenium.Capabilities;
+import org.openqa.selenium.MutableCapabilities;
+import org.openqa.selenium.Proxy;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
-import org.openqa.selenium.remote.DesiredCapabilities;
 
+import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
+import java.io.File;
 import java.util.HashMap;
 import java.util.Map;
 
-public class MyChromeBrowserClass implements WebDriverProvider {
+public class CustomChromeDriverProvider implements WebDriverProvider {
 
+    private static class CustomChromeDriver extends ChromeDriver {
+        protected CustomChromeDriver(ChromeOptions options) {
+            super(options);
+        }
+    }
+
+    @Nonnull
     @Override
-    public WebDriver createDriver(DesiredCapabilities desiredCapabilities) {
+    public WebDriver createDriver(@Nonnull Capabilities capabilities) {
         WebDriverManager.chromedriver().setup();
-        desiredCapabilities.setBrowserName("chrome");
-        desiredCapabilities.setVersion("73.0");
-        return new ChromeDriver(getChromeOptions());
+        return new CustomChromeDriver(getChromeOptions());
     }
 
     public static ChromeOptions getChromeOptions() {
         ChromeOptions chromeOptions = new ChromeOptions();
-        chromeOptions.addArguments("disable-infobars");
+        chromeOptions.setExperimentalOption("excludeSwitches", new String[]{"enable-automation"});
         chromeOptions.addArguments("disable-notifications");
         chromeOptions.addArguments("disable-device-discovery-notifications");
         chromeOptions.addArguments("no-sandbox");

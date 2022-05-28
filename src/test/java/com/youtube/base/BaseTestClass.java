@@ -22,6 +22,7 @@ import java.util.Objects;
 import java.util.Properties;
 
 import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 
 import static com.codeborne.selenide.Selenide.open;
@@ -36,6 +37,12 @@ public class BaseTestClass {
     private static Properties properties;
     private static final Logger LOGGER = Logger.getLogger(BaseTestClass.class);
     protected YoutubeMainPage youtubeMainPage;
+
+    @BeforeAll
+    static void setUpAllureReports() {
+        SelenideLogger.addListener("AllureSelenide", new AllureSelenide());
+
+    }
 
     @BeforeEach
     public void setUp() {
@@ -67,7 +74,7 @@ public class BaseTestClass {
     }
 
     private static void selenideConfig() {
-        Configuration.browser = "com.youtube.browser.MyChromeBrowserClass";
+        Configuration.browser = "com.youtube.browser.CustomChromeDriverProvider";
         Configuration.browserSize = "1920x1080";
         Configuration.reportsFolder = "target/reports";
         SelenideLogger.addListener("Allure Selenide", new AllureSelenide());
