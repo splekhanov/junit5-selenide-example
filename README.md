@@ -4,7 +4,7 @@ Roughly built Selenium automation framework created for training purposes.
 # What tests do
 
 Simple search test case
-1. Search query and checking that there's at least 1 result found
+1. Search query and check that there's at least 1 result found
 - - - -
 
 ## Setup:
