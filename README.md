@@ -3,9 +3,8 @@ Roughly built Selenium automation framework created for training purposes.
 
 # What tests do
 
-Two simple search test cases (positive and negative).
-1. Search query and checking first 5 results relevance
-2. Search query which doesn't return any results
+Simple search test case
+1. Search query and checking that there's at least 1 result found
 - - - -
 
 ## Setup:

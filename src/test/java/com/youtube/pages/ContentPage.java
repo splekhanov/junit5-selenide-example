@@ -6,7 +6,7 @@ import static com.codeborne.selenide.Selenide.$x;
 
 public class ContentPage extends AbstractBasePage {
 
-    private SelenideElement contentPageManager = $x("//*[@id='page-manager']");
+    private final SelenideElement contentPageManager = $x("//*[@id='page-manager']");
 
     ContentPage() {
         checkPageLoaded(contentPageManager);

@@ -7,13 +7,13 @@ import static com.codeborne.selenide.Selenide.$x;
 
 public class GoogleLoginPage extends AbstractBasePage {
 
-    private SelenideElement loginFormContainer = $x("//div[@id='initialView']");
-    private SelenideElement logo = $x("//div[@id='logo']");
-    private SelenideElement profile = $x("//div[@id='profileIdentifier']");
-    private SelenideElement emailInput = $x("//input[@type='email']");
-    private SelenideElement passwordInput = $x("//input[@name='password']");
-    private SelenideElement loginNextButton = $x("//div[@id='identifierNext']");
-    private SelenideElement passwordNextButton = $x("//div[@id='passwordNext']");
+    private final SelenideElement loginFormContainer = $x("//div[@id='initialView']");
+    private final SelenideElement logo = $x("//div[@id='logo']");
+    private final SelenideElement profile = $x("//div[@id='profileIdentifier']");
+    private final SelenideElement emailInput = $x("//input[@type='email']");
+    private final SelenideElement passwordInput = $x("//input[@name='password']");
+    private final SelenideElement loginNextButton = $x("//div[@id='identifierNext']");
+    private final SelenideElement passwordNextButton = $x("//div[@id='passwordNext']");
 
     GoogleLoginPage() {
         loginFormContainer.shouldBe(visible);

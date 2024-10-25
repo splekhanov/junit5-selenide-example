@@ -2,21 +2,16 @@ package com.youtube.pages;
 
 import com.codeborne.selenide.SelenideElement;
 import com.youtube.exceptions.PageNotLoadedException;
-import org.openqa.selenium.NoSuchWindowException;
-import org.openqa.selenium.NotFoundException;
-import org.openqa.selenium.support.ui.ExpectedCondition;
-import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.$x;
-import static com.codeborne.selenide.WebDriverRunner.getWebDriver;
 
 public abstract class AbstractBasePage {
 
-    private SelenideElement redNavigationProgressBar = $x("//yt-page-navigation-progress");
+    private final SelenideElement redNavigationProgressBar = $x("//yt-page-navigation-progress");
 
     protected void checkPageLoaded(SelenideElement... lctrs) {
         try {
@@ -30,7 +25,7 @@ public abstract class AbstractBasePage {
         if (lctrs.length != 0) {
             List<SelenideElement> notDisplayedElements = getNotDisplayed(lctrs);
             if (notDisplayedElements.size() > 0) {
-                throw new AssertionError("Were not displayed: " + notDisplayedElements);
+                throw new AssertionError("These elements were not displayed: " + notDisplayedElements);
             }
         }
     }
@@ -38,7 +33,7 @@ public abstract class AbstractBasePage {
     private List<SelenideElement> getNotDisplayed(SelenideElement[] lctrs) {
         List<SelenideElement> notDisplayed = new ArrayList<>();
         for (SelenideElement element : lctrs) {
-            if (!element.isDisplayed()) {
+            if (!element.exists()) {
                 notDisplayed.add(element);
             }
         }
@@ -55,11 +50,7 @@ public abstract class AbstractBasePage {
     }
 
     protected boolean isVisible(SelenideElement elem) {
-        if (elem.shouldBe(visible).isDisplayed()) {
-            return true;
-        } else {
-            return false;
-        }
+        return elem.shouldBe(visible).isDisplayed();
     }
 
     @Override

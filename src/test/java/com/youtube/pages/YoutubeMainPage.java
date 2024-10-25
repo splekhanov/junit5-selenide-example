@@ -7,11 +7,11 @@ import static com.codeborne.selenide.Selenide.$x;
 
 public class YoutubeMainPage extends AbstractBasePage {
 
-    private MastheadWidgetPage mastheadWidgetPage;
-    private ContentPage contentPage;
+    private final MastheadWidgetPage mastheadWidgetPage;
+    private final ContentPage contentPage;
 
-    private SelenideElement mastheadWidget = $x("//*[@id='masthead']");
-    private SelenideElement guideWidget = $x("//*[@id='guide-renderer']");
+    private final SelenideElement mastheadWidget = $x("//*[@id='masthead']");
+    private final SelenideElement guideWidget = $x("//*[@id='guide-renderer' or @id='items']");
 
     public YoutubeMainPage() {
         mastheadWidget.shouldBe(visible);
