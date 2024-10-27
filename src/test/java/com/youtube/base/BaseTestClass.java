@@ -16,10 +16,7 @@ import org.junit.jupiter.api.BeforeEach;
 
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.net.URL;
 import java.nio.charset.StandardCharsets;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -77,13 +74,12 @@ public class BaseTestClass {
     private static void selenideConfig() {
         Configuration.browser = "com.youtube.browser.CustomChromeDriverProvider";
 
-        // Local chromedriver configuration
-        final URL location = BaseTestClass.class.getClassLoader().getResource("chromedriver.exe");
-        String uriPath = location.getPath();
-        final Path path = Paths.get(uriPath.substring(1));
-        System.setProperty("webdriver.chrome.driver", path.toString());
+//        // Local chromedriver configuration
+//        final URL location = BaseTestClass.class.getClassLoader().getResource("chromedriver.exe");
+//        String uriPath = location.getPath();
+//        final Path path = Paths.get(uriPath.substring(1));
+//        System.setProperty("webdriver.chrome.driver", path.toString());
 
-        Configuration.browser = "chrome";
         Configuration.browserSize = "1920x1080";
         Configuration.reportsFolder = "target/reports";
         SelenideLogger.addListener("Allure Selenide", new AllureSelenide());
