@@ -2,16 +2,17 @@ package com.youtube.base;
 
 import com.codeborne.selenide.CollectionCondition;
 import com.codeborne.selenide.Condition;
+import com.codeborne.selenide.Configuration;
 import com.codeborne.selenide.ElementsCollection;
+import com.codeborne.selenide.logevents.SelenideLogger;
 import com.youtube.objects.User;
 import com.youtube.pages.GoogleLoginPage;
 import com.youtube.pages.YoutubeMainPage;
 import io.qameta.allure.Step;
 import io.qameta.allure.selenide.AllureSelenide;
-import org.apache.log4j.Logger;
-import org.junit.jupiter.api.AfterAll;
-import com.codeborne.selenide.Configuration;
-import com.codeborne.selenide.logevents.SelenideLogger;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.BeforeEach;
 
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -20,14 +21,11 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 import java.util.Properties;
-
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.BeforeEach;
+import java.util.logging.Logger;
 
 import static com.codeborne.selenide.Selenide.open;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 import static com.google.common.collect.MoreCollectors.onlyElement;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class BaseTestClass {
 
@@ -35,7 +33,7 @@ public class BaseTestClass {
     private static List<User> users;
     private static String startUrl;
     private static Properties properties;
-    private static final Logger LOGGER = Logger.getLogger(BaseTestClass.class);
+    private static final Logger LOGGER = Logger.getLogger(String.valueOf(BaseTestClass.class));
     protected YoutubeMainPage youtubeMainPage;
 
     @BeforeAll
@@ -85,7 +83,7 @@ public class BaseTestClass {
         try {
             properties.load(new InputStreamReader(Objects.requireNonNull(BaseTestClass.class.getClassLoader().getResourceAsStream("local.properties")), StandardCharsets.UTF_8));
         } catch (IOException e) {
-            LOGGER.error("Can't load 'config.properties'");
+            LOGGER.warning("Can't load 'config.properties'");
         }
         startUrl = properties.getProperty("startUrl");
         /* Initialize user 1 */

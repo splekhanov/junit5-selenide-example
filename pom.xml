@@ -11,10 +11,13 @@
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<maven.compiler.source>1.8</maven.compiler.source>
+		<junitjupiter.version>5.8.2</junitjupiter.version>
+		<slf4jsimple.version>2.0.16</slf4jsimple.version>
+		<guava.version>33.3.1-jre</guava.version>
+		<log4jslf4jimpl.version>2.24.1</log4jslf4jimpl.version>
 		<aspectj.version>1.9.9.1</aspectj.version>
 		<selenide.version>7.5.1</selenide.version>
 		<allure.version>2.18.1</allure.version>
-		<webdrivermanager.version>5.9.2</webdrivermanager.version>
 	</properties>
 
 	<dependencies>
@@ -38,34 +41,29 @@
 		</dependency>
 
 		<dependency>
-			<groupId>io.github.bonigarcia</groupId>
-			<artifactId>webdrivermanager</artifactId>
-			<version>${webdrivermanager.version}</version>
-		</dependency>
-
-		<dependency>
 			<groupId>org.junit.jupiter</groupId>
 			<artifactId>junit-jupiter</artifactId>
-			<version>5.8.2</version>
+			<version>${junitjupiter.version}</version>
 			<scope>test</scope>
 		</dependency>
 
 		<dependency>
 			<groupId>org.slf4j</groupId>
 			<artifactId>slf4j-simple</artifactId>
-			<version>1.7.36</version>
+			<version>${slf4jsimple.version}</version>
 		</dependency>
 
 		<dependency>
 			<groupId>com.google.guava</groupId>
 			<artifactId>guava</artifactId>
-			<version>31.1-jre</version>
+			<version>${guava.version}</version>
 		</dependency>
 
 		<dependency>
-			<groupId>log4j</groupId>
-			<artifactId>log4j</artifactId>
-			<version>1.2.17</version>
+			<groupId>org.apache.logging.log4j</groupId>
+			<artifactId>log4j-slf4j-impl</artifactId>
+			<version>${log4jslf4jimpl.version}</version>
+			<scope>runtime</scope>
 		</dependency>
 
     </dependencies>
