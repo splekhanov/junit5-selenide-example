@@ -75,14 +75,14 @@ public class BaseTestClass {
     }
 
     private static void selenideConfig() {
-        Configuration.browser = "com.youtube.browser.CustomChromeDriverProvider";
-
         // Local chromedriver configuration
         final URL location = BaseTestClass.class.getClassLoader().getResource("chromedriver.exe");
         String uriPath = location.getPath();
         final Path path = Paths.get(uriPath.substring(1));
         System.setProperty("webdriver.chrome.driver", path.toString());
 
+        // Selenide configuration
+        Configuration.browser = "com.youtube.browser.CustomChromeDriverProvider";
         Configuration.browserSize = "1920x1080";
         Configuration.reportsFolder = "target/reports";
         SelenideLogger.addListener("Allure Selenide", new AllureSelenide());
